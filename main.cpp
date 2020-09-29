@@ -54,7 +54,7 @@ deque<string> convert_to_rpn(Iterator it, Iterator end) {
                     func_stack.push(*it);
                     continue;
                 }
-                auto new_priority = ops.at(*it);
+                auto new_priority = op_iter->second;
                 while(!func_stack.empty()) {
                     auto top_op = func_stack.top();
                     if(top_op == ")" || top_op == "(")
@@ -136,7 +136,8 @@ int main() {
     catch(const runtime_error& e) {
         cout << "Runtime error: " << e.what() << '\n';
     }
+    catch(const exception& e) {
+        cout << "Std exception: " << e.what() << '\n';
+    }
     return 0;
 }
-
-
